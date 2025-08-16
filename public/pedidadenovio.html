@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>¿Quieres ser mi novia?</title>
+  <!-- Asegúrate de que la ruta a estilos.css sea correcta si está en una subcarpeta -->
   <link rel="stylesheet" href="css/estilos.css">
   <style>
     body {
@@ -11,6 +12,7 @@
       text-align: center;
       padding: 20px;
       overflow-x: hidden;
+      color: #333;
     }
 
     h1, h2 {
@@ -45,6 +47,11 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
     }
 
     .contador {
@@ -70,6 +77,7 @@
       border-radius: 12px;
       cursor: pointer;
       animation: latido 1.5s infinite;
+      margin-top: 30px;
     }
 
     .boton-aceptar:hover {
@@ -128,16 +136,35 @@
       top: 0;
     }
 
+    .musica-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
     .portada-musica {
-    width: 100px;
-    height: auto;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
-}
+        width: 100px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
 
+    .boton-musica {
+        background-color: #f06292;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
 
-
+    .boton-musica:hover {
+        background-color: #d81b60;
+    }
 
     @keyframes flotar {
       0% {
@@ -151,6 +178,26 @@
         transform: translateY(-10vh) rotate(45deg) scale(1.5);
         opacity: 0;
       }
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+        .contador {
+            font-size: 24px;
+            padding: 15px;
+        }
+        .contador span {
+            font-size: 32px !important;
+        }
+        .mensaje {
+            font-size: 16px;
+            padding: 15px;
+        }
+        .fotos img {
+            width: 180px;
+        }
     }
   </style>
 </head>
@@ -215,7 +262,7 @@
     actualizarContador();
 
     // Corazones flotando
-    const corazones = document.getElementById("corazones");
+    const corazonesContainer = document.getElementById("corazones"); // Renombrado para evitar conflicto
     function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.className = "corazon";
@@ -228,22 +275,25 @@
       corazon.style.left = Math.random() * 100 + "vw";
       corazon.style.backgroundColor = color;
       corazon.style.animationDuration = (5 + Math.random() * 5) + "s";
+      corazon.style.animationDelay = (Math.random() * 2) + "s"; // Añadir un pequeño delay aleatorio
 
-      corazones.appendChild(corazon);
+      corazonesContainer.appendChild(corazon);
 
       setTimeout(() => {
         corazon.remove();
-      }, 10000);
+      }, 10000); // Eliminar después de que termine la animación
     }
 
+    // Crear corazones continuamente
     setInterval(crearCorazon, 300);
 
     // Control de música
     function toggleMusica() {
       const musica = document.getElementById("musica");
+      // Asegurarse de que el audio no esté silenciado por defecto si se reproduce automáticamente
       musica.muted = false;
       if (musica.paused) {
-        musica.play();
+        musica.play().catch(e => console.error("Error al intentar reproducir la música:", e));
       } else {
         musica.pause();
       }

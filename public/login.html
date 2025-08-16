@@ -3,17 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <title>Iniciar sesión</title>
+  <!-- Asegúrate de que la ruta a estilos.css sea correcta si está en una subcarpeta -->
   <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Estilos básicos para el formulario de login/registro */
+    body.fondo {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .formulario {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    .formulario h2 {
+      color: #d81b60;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .formulario input[type="text"],
+    .formulario input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .formulario button {
+      width: 100%;
+      padding: 15px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .formulario button:hover {
+      background-color: #ff1493;
+    }
+
+    .formulario p {
+      margin-top: 20px;
+      color: #666;
+    }
+
+    .formulario p a {
+      color: #d81b60;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .formulario p a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body class="fondo">
   <div class="formulario">
     <h2>💕 Inicia sesión</h2>
-    <form action="/login" method="POST">
+    <form id="login-form">
       <input type="text" name="user" placeholder="Tu nombre" required>
       <input type="password" name="pass" placeholder="Tu contraseña" required>
       <button type="submit">Entrar</button>
     </form>
     <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
   </div>
+
+  <script src="js/config.js"></script>
+  <script>
+const form = document.getElementById("login-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const user = formData.get("user");
+  const pass = formData.get("pass");
+
+  try {
+    const res = await fetch(getApiUrl("/login"), {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user, pass })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("¡Bienvenido! ❤️");
+      window.location.href = "index.html";
+    } else {
+      alert(data.message || "Credenciales incorrectas.");
+    }
+  } catch (error) {
+    console.error("Error en la solicitud de login:", error);
+    alert("Hubo un problema al intentar iniciar sesión. Por favor, verifica tu conexión.");
+  }
+});
+  </script>
 </body>
 </html>

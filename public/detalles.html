@@ -692,6 +692,7 @@
             
             // Crear corazones flotantes al hacer clic
             document.addEventListener('click', function(e) {
+                // Evitar que los corazones aparezcan al hacer clic en botones o imágenes de la galería
                 if (e.target.tagName === 'BUTTON' || e.target.tagName === 'IMG' || e.target.classList.contains('photo-placeholder')) {
                     return;
                 }

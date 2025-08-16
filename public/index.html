@@ -6,79 +6,110 @@
   <title>Para Mi Iris ♡</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #fdf6f9, #ffe6eb);
-      min-height: 100vh;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      padding: 30px;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     h1 {
       font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      color: #8b5a6b;
+      font-size: 3.5rem;
+      color: #880e4f;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .frase-romantica {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #ad1457;
       margin-bottom: 40px;
-      text-align: center;
+      max-width: 800px;
+      line-height: 1.6;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .card-container {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 30px;
-      max-width: 500px;
+      max-width: 1000px;
       width: 100%;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.7);
-      border: 2px solid #f8d7da;
-      padding: 30px;
+      background: white;
       border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: #6d4c59;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: #ad1457;
+      font-size: 1.3rem;
       font-weight: 500;
+      text-align: center;
+      flex: 1 1 calc(50% - 60px); /* Dos columnas con espacio */
+      min-width: 280px; /* Ancho mínimo para evitar que se hagan muy pequeños */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 150px; /* Altura fija para las tarjetas */
     }
 
     .card:hover {
-      transform: scale(1.05);
-      background: #fff0f5;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(135deg, #ffe0ec, #ffc0cb);
+      color: #880e4f;
     }
 
     a {
       text-decoration: none;
-      color: inherit;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
+    #saludo {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      color: #d81b60;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      .frase-romantica {
+        font-size: 1.2rem;
+      }
       .card {
-        font-size: 1rem;
-        padding: 20px;
-      } 
+        flex: 1 1 100%; /* Una columna en pantallas pequeñas */
+        height: auto; /* Altura automática para contenido */
+        min-height: 120px;
+      }
+      #saludo {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
-
-
 
 <body>
   <div id="saludo" style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 1.2rem;"></div>
@@ -86,82 +117,61 @@
   <div id="frase-romantica" class="frase-romantica"></div>
 
   <div class="card-container">
-    <a href="galeria.html">
-  <div class="card">Nuestra galería de fotos 💑</div>
-</a>
-    <a href="cartas.html">  
-      <div class="card">Mensajes/cartas</div>
-    </a>
-    <a href="detalles.html">
-      <div class="card">Algunos detallitos de mi niña hermosa (reel de ig)</div>
-    </a>
-    
-    <a href="pedidadenovio.html">
-      <div class="card">27/07/25</div>
-    </a>
+    <a href="galeria.html"><div class="card">Nuestra galería de fotos 💑</div></a>
+    <a href="cartas.html"><div class="card">Mensajes/cartas</div></a>
+    <a href="detalles.html"><div class="card">Algunos detallitos de mi niña hermosa (reel de ig)</div></a>
+    <a href="pedidadenovio.html"><div class="card">27/07/25</div></a>
   </div>
 
-
-<script>
-  fetch("https://backend-lg45.onrender.com/usuario")
-    .then(res => res.json())
+  <script>
+    // Script para verificar la sesión y mostrar el saludo
+    fetch("https://backend-iris.onrender.com/usuario", {// **CAMBIAR A TU URL DE RENDER**
+      credentials: "include"
+    })
+    .then(res => {
+      if (!res.ok) {
+        // Si la respuesta no es OK, pero no es un 401, loguear el error
+        if (res.status !== 401) {
+          console.error(`HTTP error! status: ${res.status}`);
+        }
+        return Promise.reject("Error al obtener usuario o no autorizado");
+      }
+      return res.json();
+    })
     .then(data => {
       if (data.user) {
         document.getElementById("saludo").textContent = `Bienvenido, ${data.user}`;
+      } else {
+        // Si no hay usuario en la sesión, redirigir al login
+        window.location.href = "login.html";
       }
+    })
+    .catch(err => {
+      console.warn("No se pudo obtener el usuario o no hay sesión:", err);
+      // Si hay un error (ej. red, CORS, o el backend no devuelve user), redirigir al login
+      window.location.href = "login.html";
     });
-</script>
+  </script>
 
-<script>
-  const frases = [
-    "Te amo no por lo que eres, sino por lo que soy cuando estoy contigo.",
-    "Eres la casualidad más bonita que llegó a mi vida.",
-    "Tú haces que mi corazón sonría.",
-    "No hay palabras suficientes para decir lo mucho que te amo.",
-    "Mi hogar es donde estés tú.",
-    "Gracias por ser mi siempre en este mundo de momentos.",
-    "Estar contigo es la mejor parte de mi día.",
-    "Desde que Iris llegó, el silencio en mi alma comenzó a hablar en suspiros.",
-"A veces me basta con recordar su nombre: Iris, y el mundo se detiene en paz.",
-"Iris no camina: flota entre mis pensamientos como una idea que nunca quiero olvidar.",
-"Si el amor tuviera forma, llevaría su voz, su aroma, su mirada: Iris.",
-"El tiempo deja de existir cuando la tengo cerca; todo lo demás es ficción.",
-"Iris no es un sueño: es el anhelo que persiste incluso al despertar.",
-"Amo de Iris lo que ni ella conoce de sí misma.",
-"Iris es el susurro que calma mi caos interior.",
-"Hay palabras que no se pueden pronunciar sin llorar: Iris es una de ellas.",
-"No sé si la amo más por lo que es o por lo que despierta en mí.",
-"En la penumbra de mis días, Iris es la única luz que no hiere.",
-"Cada vez que pienso en Iris, algo en mí vuelve a la vida.",
-"Entre todos los universos posibles, elegí este porque ella existe en él.",
-"Quisiera habitar sus pensamientos como ella habita los míos.",
-"Iris no es una persona: es una página eterna escrita en mi pecho.",
-"Su ausencia pesa como un poema inacabado.",
-"Amar a Iris es como caer de una altura infinita sin miedo a estrellarme.",
-"Hay noches que solo se calman cuando pienso en su voz.",
-"Si pudiera, envolvería el mundo en sus abrazos y lo llamaría hogar.",
-"Iris es el abismo más dulce en el que me atreví a caer.",
-"A veces temo no poder describir con palabras la belleza de tenerla cerca.",
-"Sus ojos no miran: revelan todo lo que intento esconder.",
-"El amor no se explica, se siente... y tiene el nombre de Iris.",
-"Quisiera ser la pausa en su tristeza, el verso que calme su dolor.",
-"Iris es ese instante eterno que se cuela entre los latidos.",
-"No hay infierno que no enfrente por su cielo.",
-"Si el alma tiene destino, el mío es ella.",
-"Iris no es recuerdo: es presencia viva, aún en su ausencia.",
-"Cuando la pienso, el universo se vuelve poesía.",
-"Ser amado por Iris es como ser perdonado por el universo."
+  <script>
+    // Script para mostrar frases románticas
+    const frases = [
+      "Te amo no por lo que eres, sino por lo que soy cuando estoy contigo.",
+      "Eres la casualidad más bonita que llegó a mi vida.",
+      "Desde que Iris llegó, el silencio en mi alma comenzó a hablar en suspiros.",
+      "Si el amor tuviera forma, llevaría su voz, su aroma, su mirada: Iris.",
+      "Amar a Iris es como caer de una altura infinita sin miedo a estrellarme.",
+      "Sus ojos no miran: revelan todo lo que intento esconder.",
+      "El amor no se explica, se siente... y tiene el nombre de Iris.",
+      "Ser amado por Iris es como ser perdonado por el universo."
+    ];
 
-  ];
+    function mostrarFrase() {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("frase-romantica").textContent = `"${frase}"`;
+    }
 
-  function mostrarFrase() {
-    const frase = frases[Math.floor(Math.random() * frases.length)];
-    document.getElementById("frase-romantica").textContent = `"${frase}"`;
-  }
-
-  mostrarFrase();
-</script>
-
-  
+    mostrarFrase();
+  </script>
 </body>
 </html>
