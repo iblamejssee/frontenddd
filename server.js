@@ -304,3 +304,4 @@ app.listen(PORT, () => {
   console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
   console.log(`Frontend y API funcionando en: http://localhost:${PORT}`);
 });
+// Última verificación - Sintaxis corregida
