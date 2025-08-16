@@ -1,10 +1,9 @@
-// Configuración de la API
-// CAMBIA ESTA URL POR LA URL REAL DE TU API EN RENDER
-const API_BASE_URL = 'https://tu-api.onrender.com';
+// Configuración de la API - TODO en un solo servidor
+// No necesitas cambiar nada aquí - funciona automáticamente
 
-// Función para construir URLs completas de la API
+// Función para construir URLs de la API
 function getApiUrl(endpoint) {
-  return `${API_BASE_URL}/api${endpoint}`;
+  return `/api${endpoint}`;
 }
 
 // Función para verificar si el usuario está autenticado
@@ -25,7 +24,7 @@ async function checkAuth() {
 async function requireAuth() {
   const user = await checkAuth();
   if (!user) {
-    window.location.href = 'login.html';
+    window.location.href = '/login';
     return false;
   }
   return user;
@@ -38,9 +37,9 @@ async function logout() {
       method: 'POST',
       credentials: 'include'
     });
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   } catch (error) {
     console.error('Error en logout:', error);
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 }

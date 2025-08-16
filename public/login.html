@@ -85,7 +85,7 @@
       <input type="password" name="pass" placeholder="Tu contraseña" required>
       <button type="submit">Entrar</button>
     </form>
-    <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+    <p>¿No tienes cuenta? <a href="/registro">Regístrate aquí</a></p>
   </div>
 
   <script src="js/config.js"></script>
@@ -113,7 +113,7 @@ form.addEventListener("submit", async (e) => {
 
     if (data.success) {
       alert("¡Bienvenido! ❤️");
-      window.location.href = "index.html";
+      window.location.href = "/";
     } else {
       alert(data.message || "Credenciales incorrectas.");
     }
